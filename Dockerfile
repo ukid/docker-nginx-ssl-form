@@ -35,7 +35,5 @@ RUN  CONFARGS=$(nginx -V 2>&1 | sed -n -e 's/^.*arguments: //p' | sed -n -e 's/-
 
 FROM ghcr.io/linuxserver/swag
 # Extract the dynamic module NCHAN from the builder image
-COPY --from=builder nginx-1.18.0/objs/ndk_http_module.so /usr/lib/nginx/modules/ndk_http_module.so
 COPY --from=builder nginx-1.18.0/objs/ngx_http_form_input_module.so /usr/lib/nginx/modules/ngx_http_form_input_module.so
-RUN echo "load_module \"modules/ndk_http_module.so\";" > /etc/nginx/modules/http_module.conf
 RUN echo "load_module \"modules/ngx_http_form_input_module.so\";" > /etc/nginx/modules/http_form_input_module.conf
